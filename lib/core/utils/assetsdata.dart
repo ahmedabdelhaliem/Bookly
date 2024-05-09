@@ -1,3 +1,4 @@
 class AssetData {
-  static String Logo = 'assets/images/Logo.png';
+  static String logo = 'assets/images/Logo.png';
+  static String test = 'assets/images/test.jpg';
 }
