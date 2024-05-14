@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 
 class HomeRepoImplementation implements HomeRepo {
   @override
-  Future<Either<Failure, List<BookModel>>> fetchBestsellerBooks() {
+  Future<Either<Failure, List<BookModel>>> fetchNewestBooks() {
     // TODO: implement fetchBestsellerBooks
     throw UnimplementedError();
   }
