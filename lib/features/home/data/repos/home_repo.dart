@@ -7,21 +7,7 @@ abstract class HomeRepo {
   final ApiService apiService;
 
   HomeRepo(this.apiService);
-  Future<Either<Failure, List<BookModel>>> fetchNewestBooks() async {
-    try {
-      var data = await apiService.get(
-          endPoint:
-              'volumes?Filtering=free-ebooks&subjectstartIndex =&q=subject:programming');
-      List<BookModel> books = [];
-      for (var item in data['items']) {
-        books.add(BookModel.fromJson(item));
-      }
-      return right(books);
-    } on Exception catch (e) {
-      return left(ServiceFailure());
-      // TODO
-    }
-  }
+  Future<Either<Failure, List<BookModel>>> fetchNewestBooks();
 
   Future<Either<Failure, List<BookModel>>> fetchFeatureBooks();
 }
