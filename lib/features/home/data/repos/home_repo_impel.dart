@@ -5,7 +5,9 @@ import 'package:bookly_mvvm/features/home/data/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-abstract class HomeRepoImplementation implements HomeRepo {
+class HomeRepoImplementation implements HomeRepo {
+  HomeRepoImplementation(ApiService apiService);
+
   @override
   Future<Either<Failure, List<BookModel>>> fetchNewestBooks() async {
     try {
@@ -48,4 +50,8 @@ abstract class HomeRepoImplementation implements HomeRepo {
       // TODO
     }
   }
+
+  @override
+  // TODO: implement apiService
+  ApiService get apiService => throw UnimplementedError();
 }
