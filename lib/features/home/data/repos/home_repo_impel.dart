@@ -6,27 +6,25 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 class HomeRepoImplementation implements HomeRepo {
-  HomeRepoImplementation(ApiService apiService);
+  final ApiService apiService;
+
+  HomeRepoImplementation(this.apiService);
 
   @override
   Future<Either<Failure, List<BookModel>>> fetchNewestBooks() async {
     try {
       var data = await apiService.get(
           endPoint:
-              'volumes?Filtering=free-ebooks&subjectstartIndex =&q=subject:programming');
+              'volumes?Filtering=free-ebooks&startIndex=0&q=subject:programming');
       List<BookModel> books = [];
       for (var item in data['items']) {
         books.add(BookModel.fromJson(item));
       }
-      return right(books);
-    } on Exception catch (e) {
-      if (e is DioError) {
-        return Left(ServiceFailure.fromDioError(e));
-      }
-      return Left(ServiceFailure(
-        e.toString(),
-      ));
-      // TODO
+      return Right(books);
+    } on DioError catch (e) {
+      return Left(ServiceFailure.fromDioError(e));
+    } catch (e) {
+      return Left(ServiceFailure(e.toString()));
     }
   }
 
@@ -39,19 +37,11 @@ class HomeRepoImplementation implements HomeRepo {
       for (var item in data['items']) {
         books.add(BookModel.fromJson(item));
       }
-      return right(books);
-    } on Exception catch (e) {
-      if (e is DioError) {
-        return Left(ServiceFailure.fromDioError(e));
-      }
-      return Left(ServiceFailure(
-        e.toString(),
-      ));
-      // TODO
+      return Right(books);
+    } on DioError catch (e) {
+      return Left(ServiceFailure.fromDioError(e));
+    } catch (e) {
+      return Left(ServiceFailure(e.toString()));
     }
   }
-
-  @override
-  // TODO: implement apiService
-  ApiService get apiService => throw UnimplementedError();
 }
