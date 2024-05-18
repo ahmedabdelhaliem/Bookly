@@ -17,11 +17,16 @@ class FeatureListView extends StatelessWidget {
             return SizedBox(
               height: MediaQuery.of(context).size.height * .3,
               child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: state.books.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  return const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    child: CustomBookImage(),
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: CustomBookImage(
+                      urlImage: state
+                          .books[index].volumeInfo.imageLinks!.smallThumbnail,
+                    ),
                   );
                 },
               ),
