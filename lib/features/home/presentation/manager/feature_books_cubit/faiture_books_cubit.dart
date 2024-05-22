@@ -9,13 +9,15 @@ part 'faiture_books_state.dart';
 class FeatureBooksCubit extends Cubit<FeatureBooksState> {
   FeatureBooksCubit(this.homeRepo) : super(FeatureBooksInitial());
   final HomeRepo homeRepo;
-  Future<void> fetchFeaturedBooks() async {
+  Future<void> fetchSimilarBooks() async {
     emit(FeatureBooksLoading());
-    var result = await homeRepo.fetchFeatureBooks();
+    var result = await homeRepo.fetchSimilarBooks(category: '');
     result.fold((failure) {
       emit(FeatureBooksFailure(failure.errorMessage));
     }, (books) {
       emit(FeatureBooksSuccess(books));
     });
   }
+
+  fetchFeaturedBooks() {}
 }

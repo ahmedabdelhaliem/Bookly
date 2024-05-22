@@ -1,5 +1,4 @@
 import 'package:bookly_mvvm/core/utils/styles.dart';
-import 'package:bookly_mvvm/features/home/presentation/views/widgets/best_seller_list_view-item.dart';
 import 'package:bookly_mvvm/features/search/presentation/views/widgets/SearchResultListView.dart';
 import 'package:bookly_mvvm/features/search/presentation/views/widgets/custom_text_search_field.dart';
 import 'package:flutter/cupertino.dart';
